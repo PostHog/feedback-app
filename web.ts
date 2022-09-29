@@ -1,9 +1,11 @@
+import * as config from "./plugin.json";
+
 const style = ` 
 .form, .button, .thanks {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #f9bd2a;
+  background: blue;
   color: black;
   font-weight: normal;
   font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Roboto", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -50,20 +52,24 @@ const form = `
 
 export function inject({ config, posthog }) {
   const shadow = createShadow();
+
+  function openFeedbackBox() {
+    Object.assign(buttonElement.style, { display: "none" });
+    Object.assign(formElement.style, { display: "flex" });
+    const submit: HTMLElement | undefined =
+      formElement.querySelector(".form-submit");
+    if (submit) {
+      submit.innerText = config.sendButtonText;
+    }
+  }
+
   const buttonElement = Object.assign(document.createElement("button"), {
     className: "button",
     innerText: config.buttonText || "?",
-    onclick: function () {
-      Object.assign(buttonElement.style, { display: "none" });
-      Object.assign(formElement.style, { display: "flex" });
-      const submit: HTMLElement | undefined =
-        formElement.querySelector(".form-submit");
-      if (submit) {
-        submit.innerText = config.sendButtonText;
-      }
-    },
+    onclick: openFeedbackBox,
   });
-  shadow.appendChild(buttonElement);
+
+  // shadow.appendChild(buttonElement);
 
   const formElement = Object.assign(document.createElement("form"), {
     className: "form",
@@ -79,6 +85,13 @@ export function inject({ config, posthog }) {
     },
   });
   shadow.appendChild(formElement);
+
+  const buttons = document.querySelectorAll(
+    "[data-attr='posthog-feedback-button']"
+  );
+  Array.from(buttons).forEach((x) =>
+    x.addEventListener("click", openFeedbackBox)
+  );
 
   const thanksElement = Object.assign(document.createElement("div"), {
     className: "thanks",

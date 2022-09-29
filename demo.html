@@ -1,0 +1,271 @@
+<head>
+  <script>
+    !(function (t, e) {
+      var o, n, p, r;
+      e.__SV ||
+        ((window.posthog = e),
+        (e._i = []),
+        (e.init = function (i, s, a) {
+          function g(t, e) {
+            var o = e.split(".");
+            2 == o.length && ((t = t[o[0]]), (e = o[1])),
+              (t[e] = function () {
+                t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+              });
+          }
+          ((p = t.createElement("script")).type = "text/javascript"),
+            (p.async = !0),
+            (p.src = s.api_host + "/static/array.js"),
+            (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+              p,
+              r
+            );
+          var u = e;
+          for (
+            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+              u.people = u.people || [],
+              u.toString = function (t) {
+                var e = "posthog";
+                return (
+                  "posthog" !== a && (e += "." + a), t || (e += " (stub)"), e
+                );
+              },
+              u.people.toString = function () {
+                return u.toString(1) + ".people (stub)";
+              },
+              o =
+                "capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(
+                  " "
+                ),
+              n = 0;
+            n < o.length;
+            n++
+          )
+            g(u, o[n]);
+          e._i.push([i, s, a]);
+        }),
+        (e.__SV = 1));
+    })(document, window.posthog || []);
+    posthog.init("phc_LL9CaLtrMIvTtsRm4sguPNCkpxRLmW7Jmat2dK2qbBO", {
+      api_host: "http://localhost:8000",
+    });
+  </script>
+</head>
+
+<body>
+  Test
+  <button data-attr="posthog-feedback-button">Feedback</button>
+
+  <script>
+    const style = ` 
+        .form, .button, .thanks {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        color: black;
+        font-weight: normal;
+        font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Roboto", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        text-align: left;
+        }
+        .button { 
+        width: 64px;
+        height: 64px;
+        border-radius: 100%;
+        text-align: center;
+        line-height: 60px;
+        font-size: 32px;
+        border: none;
+        cursor: pointer;
+        }
+        .button:hover {
+        background: #b88505;
+        }
+        .form {
+        display: none;
+        flex-direction: column;
+        border: 3px solid black;
+        border-radius: 8px;
+        padding-top: 5px;
+        width: 400px;
+        }
+        .form textarea {
+        margin-bottom: 10px;
+        background: white;
+        color: black;
+        border: none;
+        outline: none;
+        padding-left: 5px;
+        padding-right: 5px;
+        }
+        .form button {
+            box-sizing: border-box;
+            margin: 0;
+            font-family: inherit;
+            overflow: visible;
+            text-transform: none;
+            line-height: 1.5715;
+            position: relative;
+            display: inline-block;
+            font-weight: 400;
+            white-space: nowrap;
+            text-align: center;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            user-select: none;
+            touch-action: manipulation;
+            height: 32px;
+            padding: 4px 15px;
+            font-size: 14px;
+            border-radius: 4px;
+            outline: 0;
+            color: #fff;
+            border-color: #1d4aff;
+            background: #1d4aff;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
+        }
+        .thanks {
+        display:none;
+        padding: 20px;
+        }
+        .bolded { font-weight: bold; }
+        .bottom-section {
+            border-top: 1px solid #f0f0f0;
+            padding: 10px 16px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .specific-issue {
+            padding-top: 10px;
+        }
+        `;
+
+    const form = `
+        <textarea class='feedback-textarea' name='feedback' rows=6 placeholder="Help us improve"></textarea>
+        <div class='bottom-section'>
+            <div class='buttons'>
+                
+                    <button class='form-cancel'>Cancel</button>
+                
+                
+                <button class='form-submit' type='submit'>Submit</button>
+            </div>
+            <div class='specific-issue'>
+                <strong class='bolded'>Have a specific issue?</strong> Contact <a class="support-text" href="mailto:hey@posthog.com">Posthog Support</a> or <a class="support-text" href="https://posthog.com/docs">Posthog Support</a>
+            </div>
+        </div>
+        `;
+
+    function inject({ config, posthog }) {
+      const shadow = createShadow();
+
+      function openFeedbackBox() {
+        Object.assign(buttonElement.style, { display: "none" });
+        Object.assign(formElement.style, { display: "flex" });
+
+        const title = formElement.querySelector(".form-title");
+        if (title) {
+          title.innerText = config.titleText;
+        }
+
+        const submit = formElement.querySelector(".form-submit");
+        if (submit) {
+          submit.innerText = config.sendButtonText;
+        }
+      }
+
+      const buttonElement = Object.assign(document.createElement("button"), {
+        className: "button",
+        innerText: config.buttonText || "?",
+        onclick: openFeedbackBox,
+      });
+
+      // shadow.appendChild(buttonElement);
+
+      const formElement = Object.assign(document.createElement("form"), {
+        className: "form",
+        innerHTML: form,
+        onsubmit: function (e) {
+          e.preventDefault();
+          posthog.capture("Feedback Sent", { feedback: this.feedback.value });
+          Object.assign(formElement.style, { display: "none" });
+          Object.assign(thanksElement.style, { display: "flex" });
+          window.setTimeout(() => {
+            Object.assign(thanksElement.style, { display: "none" });
+          }, 3000);
+        },
+      });
+      shadow.appendChild(formElement);
+
+      const buttons = document.querySelectorAll(
+        "[data-attr='posthog-feedback-button']"
+      );
+      Array.from(buttons).forEach((x) =>
+        x.addEventListener("click", openFeedbackBox)
+      );
+
+      const thanksElement = Object.assign(document.createElement("div"), {
+        className: "thanks",
+        innerHTML: config.thanksText || "Thank you! Closing in 3 seconds...",
+      });
+      shadow.appendChild(thanksElement);
+
+      openFeedbackBox();
+    }
+
+    function createShadow() {
+      const div = document.createElement("div");
+      const shadow = div.attachShadow({ mode: "open" });
+      if (style) {
+        const styleElement = Object.assign(document.createElement("style"), {
+          innerText: style,
+        });
+        shadow.appendChild(styleElement);
+      }
+      document.body.appendChild(div);
+      return shadow;
+    }
+
+    const configInput = [
+      {
+        key: "titleText",
+        name: "Title text",
+        type: "string",
+        default: "Give feedback",
+        required: true,
+        web: true,
+      },
+      {
+        key: "buttonText",
+        name: "Button text",
+        type: "string",
+        default: "Test",
+        required: true,
+        web: true,
+      },
+      {
+        key: "sendButtonText",
+        name: "Send button text",
+        type: "string",
+        default: "Send Feedback",
+        required: true,
+        web: true,
+      },
+      {
+        key: "thanksText",
+        name: "Thank you text",
+        type: "string",
+        default: "Thank you! Closing in 3 seconds...",
+        required: true,
+        web: true,
+      },
+    ];
+
+    const config = {};
+    configInput.map((x) => (config[x.key] = x.default));
+    inject({ config: config, posthog: window.posthog });
+  </script>
+</body>
