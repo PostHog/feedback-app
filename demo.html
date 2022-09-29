@@ -194,7 +194,7 @@
         <textarea class='feedback-textarea' name='feedback' rows=6 placeholder="Help us improve"></textarea>
         <div class='bottom-section'>
             <div class='buttons'>
-                <button class='form-cancel'>Cancel</button>
+                <a class='form-cancel' type='button'>Close</a>
                 <button class='form-submit' type='submit'>Submit</button>
             </div>
             <div class='specific-issue'>
@@ -210,15 +210,16 @@
         Object.assign(buttonElement.style, { display: "none" });
         Object.assign(formElement.style, { display: "flex" });
 
-        const title = formElement.querySelector(".form-title");
-        if (title) {
-          title.innerText = config.titleText;
-        }
-
         const submit = formElement.querySelector(".form-submit");
         if (submit) {
           submit.innerText = config.sendButtonText;
         }
+
+        const closeButton = shadow.querySelector(".form-cancel");
+        closeButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          Object.assign(formElement.style, { display: "none" });
+        });
       }
 
       const buttonElement = Object.assign(document.createElement("button"), {
@@ -240,6 +241,7 @@
           window.setTimeout(() => {
             Object.assign(thanksElement.style, { display: "none" });
           }, 3000);
+          formElement.reset();
         },
       });
       shadow.appendChild(formElement);
@@ -256,8 +258,6 @@
         innerHTML: "<div>" + config.thanksText + "</div>" || "Thank you!",
       });
       shadow.appendChild(thanksElement);
-
-      openFeedbackBox();
     }
 
     function createShadow() {

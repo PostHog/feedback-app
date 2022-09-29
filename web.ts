@@ -1,5 +1,3 @@
-import * as config from "./plugin.json";
-
 const style = ` 
 .form, .button, .thanks {
   position: fixed;
