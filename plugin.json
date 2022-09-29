@@ -1,0 +1,29 @@
+{
+    "name": "Feedback Widget",
+    "config": [
+        {
+            "key": "buttonText",
+            "name": "Button text",
+            "type": "string",
+            "default": "🥹",
+            "required": true,
+            "web": true
+        },
+        {
+            "key": "sendButtonText",
+            "name": "Send button text",
+            "type": "string",
+            "default": "Send Feedback",
+            "required": true,
+            "web": true
+        },
+        {
+            "key": "thanksText",
+            "name": "Thank you text",
+            "type": "string",
+            "default": "Thank you! Closing in 3 seconds...",
+            "required": true,
+            "web": true
+        }
+    ]
+}
