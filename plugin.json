@@ -37,6 +37,14 @@
             "default": "Thank you! Closing in 3 seconds...",
             "required": true,
             "web": true
+        },
+        {
+            "key": "domains",
+            "name": "Domains",
+            "hint": "Comma separated list of domains to activate on. Leave blank to enable all. For example: \"localhost,app.posthog.com\"",
+            "type": "string",
+            "default": "",
+            "web": true
         }
     ]
 }
