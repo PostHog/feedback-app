@@ -150,6 +150,12 @@ const form = `
 `
 
 export function inject({ config, posthog }) {
+    if (config.domains) {
+        const domains = config.domains.split(',').map((domain) => domain.trim())
+        if (domains.length > 0 && domains.indexOf(window.location.hostname) === -1) {
+            return
+        }
+    }
     const shadow = createShadow()
 
     function openFeedbackBox() {
@@ -174,7 +180,6 @@ export function inject({ config, posthog }) {
         onclick: openFeedbackBox,
     })
 
-    console.log({ config })
     if (config.useButton === 'Yes') {
         shadow.appendChild(buttonElement)
     }
