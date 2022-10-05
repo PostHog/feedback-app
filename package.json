@@ -1,7 +1,14 @@
 {
-  "name": "feedback-app",
-  "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "license": "MIT"
+    "name": "feedback-app",
+    "version": "1.0.0",
+    "description": "",
+    "author": "",
+    "license": "MIT",
+    "scripts": {
+        "start": "web-dev-server"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@posthog/web-dev-server": "^1.0.3"
+    }
 }
