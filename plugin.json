@@ -15,7 +15,7 @@
             ],
             "default": "Yes",
             "required": false,
-            "web": true
+            "site": true
         },
         {
             "key": "buttonText",
@@ -23,7 +23,7 @@
             "type": "string",
             "default": "🥹",
             "required": true,
-            "web": true
+            "site": true
         },
         {
             "key": "sendButtonText",
@@ -31,7 +31,7 @@
             "type": "string",
             "default": "Send Feedback",
             "required": true,
-            "web": true
+            "site": true
         },
         {
             "key": "thanksText",
@@ -39,7 +39,7 @@
             "type": "string",
             "default": "Thank you! Closing in 3 seconds...",
             "required": true,
-            "web": true
+            "site": true
         },
         {
             "key": "domains",
@@ -47,7 +47,7 @@
             "hint": "Comma separated list of domains to activate on. Leave blank to enable all. For example: \"localhost,app.posthog.com\"",
             "type": "string",
             "default": "",
-            "web": true
+            "site": true
         }
     ]
 }
