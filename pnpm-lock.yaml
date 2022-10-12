@@ -1,10 +1,10 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@posthog/app-dev-server': ^1.1.0
+  '@posthog/app-dev-server': ^1.1.1
 
 devDependencies:
-  '@posthog/app-dev-server': 1.1.0
+  '@posthog/app-dev-server': 1.1.1
 
 packages:
 
@@ -13,8 +13,8 @@ packages:
     engines: {node: '>=6.9.0'}
     dev: true
 
-  /@posthog/app-dev-server/1.1.0:
-    resolution: {integrity: sha512-+zIoMBT+ojSiH2Bp2xA5qtoI6nENorf+UfWLODrt4HryM5XRiF64a8IjHZ3ex3z8bWjjIe4MJ7Tm7m7uaoyxTA==}
+  /@posthog/app-dev-server/1.1.1:
+    resolution: {integrity: sha512-da/K/Q/UKVTLKFn1rVhgXsXI+Fde/4pYV4MzZ6fe8RWYgdBh+KwBjwfYO/R9Xv5t96S/HHiHWoZto5ezJxdf+A==}
     hasBin: true
     dependencies:
       '@babel/standalone': 7.19.5

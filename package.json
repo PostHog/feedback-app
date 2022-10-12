@@ -9,6 +9,6 @@
     },
     "dependencies": {},
     "devDependencies": {
-        "@posthog/app-dev-server": "^1.1.0"
+        "@posthog/app-dev-server": "^1.1.1"
     }
 }
