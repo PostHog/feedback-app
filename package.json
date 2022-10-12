@@ -5,10 +5,10 @@
     "author": "",
     "license": "MIT",
     "scripts": {
-        "start": "web-dev-server"
+        "start": "app-dev-server"
     },
     "dependencies": {},
     "devDependencies": {
-        "@posthog/web-dev-server": "^1.0.3"
+        "@posthog/app-dev-server": "^1.1.0"
     }
 }
