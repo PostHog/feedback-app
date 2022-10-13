@@ -156,7 +156,7 @@ export function inject({ config, posthog }) {
             return
         }
     }
-    const shadow = createShadow()
+    const shadow = createShadow(style)
 
     function openFeedbackBox() {
         Object.assign(buttonElement.style, { display: 'none' })
@@ -210,7 +210,7 @@ export function inject({ config, posthog }) {
     shadow.appendChild(thanksElement)
 }
 
-function createShadow(): ShadowRoot {
+function createShadow(style: string): ShadowRoot {
     const div = document.createElement('div')
     const shadow = div.attachShadow({ mode: 'open' })
     if (style) {
