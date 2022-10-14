@@ -36,7 +36,6 @@ const style = `
         border-radius: 8px;
         padding-top: 5px;
         width: 380px;
-        height: 220px;
         box-shadow: -6px 0 16px -8px rgb(0 0 0 / 8%), -9px 0 28px 0 rgb(0 0 0 / 5%), -12px 0 48px 16px rgb(0 0 0 / 3%);
     }
     .form textarea {
@@ -211,6 +210,8 @@ export function inject({ config, posthog }) {
         config.cancelButtonText || 'Cancel'
     ;(formElement.getElementsByClassName('form-submit')[0] as HTMLElement).innerText =
         config.sendButtonText || 'Send Feedback'
+    ;(formElement.getElementsByClassName('specific-issue')[0] as HTMLElement).innerHTML =
+        config.footerHTML || "<strong class='bolded'>Have a complicated issue?</strong> Contact support directly!"
     shadow.appendChild(formElement)
 
     if (config.selector) {
