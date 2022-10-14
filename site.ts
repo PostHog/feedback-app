@@ -178,6 +178,7 @@ export function inject({ config, posthog }) {
         className: 'button',
         innerText: config.buttonText || '?',
         onclick: openFeedbackBox,
+        title: config.buttonTitle || '',
     })
     Object.assign(buttonElement.style, {
         color: config.buttonColor || 'black',

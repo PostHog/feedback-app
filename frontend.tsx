@@ -7,14 +7,14 @@ export const scene = {
     component: FeedbackWidget,
 }
 
-function useEvents() {
+function useEvents(eventName: string) {
     const [events, setEvents] = useState([])
     const [eventsLoading, setEventsLoading] = useState(true)
     useEffect(() => {
         const fetchEvents = async () => {
             const response = await api.events.list({
                 properties: [],
-                event: 'Feedback Sent',
+                event: eventName,
                 orderBy: ['-timestamp'],
                 after: null,
             })
@@ -26,10 +26,10 @@ function useEvents() {
     return { events, eventsLoading }
 }
 
-function useFilters() {
+function useFilters(eventName: string) {
     return {
         insight: 'TRENDS',
-        events: [{ id: 'Feedback Sent', name: 'Feedback Sent', type: 'events', order: 0 }],
+        events: [{ id: eventName, name: eventName, type: 'events', order: 0 }],
         actions: [],
         display: 'ActionsLineGraph',
         interval: 'day',
@@ -41,8 +41,9 @@ function useFilters() {
 }
 
 function FeedbackWidget({ config }) {
-    const { events, eventsLoading } = useEvents()
-    const filters = useFilters()
+    const eventName = config.eventName || 'Feedback Sent'
+    const { events, eventsLoading } = useEvents(eventName)
+    const filters = useFilters(eventName)
 
     return (
         <>
@@ -61,7 +62,7 @@ function FeedbackWidget({ config }) {
                                 key: 'feedback',
                                 title: 'Feedback',
                                 render: (_, event) => {
-                                    return <div>{event.properties['feedback']}</div>
+                                    return <div>{event.properties[config.feedbackProperty || '$feedback']}</div>
                                 },
                             },
                             {

@@ -24,6 +24,13 @@
             "default": "🤔",
             "required": true,
             "site": true
+        },{
+            "key": "buttonTitle",
+            "name": "Button title",
+            "hint": "The text that appears when you hover over the button",
+            "type": "string",
+            "default": "",
+            "site": true
         },
         {
             "key": "buttonBackground",
@@ -66,9 +73,9 @@
         {
             "key": "selector",
             "name": "Selector",
-            "hint": "CSS selector to activate on. For example: \"#my-feedback-button\"",
+            "hint": "CSS selector to activate on. For example: \"#my-feedback-button\" or \"[data-attr='posthog-feedback-button']\"",
             "type": "string",
-            "default": "[data-attr='posthog-feedback-button']",
+            "default": "",
             "site": true
         },
         {
