@@ -79,6 +79,9 @@ const style = `
         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
         box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
     }
+    .form-submit:hover {
+        filter: brightness(1.2);
+    }
     .form-cancel {
         box-sizing: border-box;
         margin: 0;
@@ -181,9 +184,7 @@ export function inject({ config, posthog }) {
                 <a class='form-cancel' type='button'>Close</a>
                 <button class='form-submit' type='submit'>Submit</button>
             </div>
-            <div class='specific-issue'>
-                <strong class='bolded'>Have a specific issue?</strong> Contact <a class="support-text" href="mailto:hey@posthog.com">Posthog Support</a> or <a class="support-text" href="https://posthog.com/docs">checkout our docs</a>
-            </div>
+            <div class='specific-issue'></div>
         </div>
     `
 
@@ -203,14 +204,21 @@ export function inject({ config, posthog }) {
             formElement.reset()
         },
     })
-    formElement
-        .getElementsByClassName('feedback-textarea')[0]
-        .setAttribute('placeholder', config.placeholderText || 'Help us improve')
-    ;(formElement.getElementsByClassName('form-cancel')[0] as HTMLElement).innerText =
-        config.cancelButtonText || 'Cancel'
-    ;(formElement.getElementsByClassName('form-submit')[0] as HTMLElement).innerText =
-        config.sendButtonText || 'Send Feedback'
-    ;(formElement.getElementsByClassName('specific-issue')[0] as HTMLElement).innerHTML =
+    const textarea = formElement.getElementsByClassName('feedback-textarea')[0] as HTMLElement
+    const cancelButton = formElement.getElementsByClassName('form-cancel')[0] as HTMLElement
+    const submitButton = formElement.getElementsByClassName('form-submit')[0] as HTMLElement
+    const footerArea = formElement.getElementsByClassName('specific-issue')[0] as HTMLElement
+
+    Object.assign(submitButton.style, {
+        color: config.buttonColor || 'white',
+        background: config.buttonBackground || '#1d8db9',
+        borderColor: config.buttonBackground || '#1d8db9',
+    })
+
+    textarea.setAttribute('placeholder', config.placeholderText || 'Help us improve')
+    cancelButton.innerText = config.cancelButtonText || 'Cancel'
+    submitButton.innerText = config.sendButtonText || 'Send Feedback'
+    footerArea.innerHTML =
         config.footerHTML || "<strong class='bolded'>Have a complicated issue?</strong> Contact support directly!"
     shadow.appendChild(formElement)
 
