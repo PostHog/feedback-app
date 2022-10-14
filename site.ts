@@ -17,6 +17,7 @@ const style = `
         font-size: 32px;
         border: none;
         cursor: pointer;
+        z-index: 999999;
     }
     .button:hover {
         filter: brightness(1.2);
