@@ -218,8 +218,11 @@ export function inject({ config, posthog }) {
     textarea.setAttribute('placeholder', config.placeholderText || 'Help us improve')
     cancelButton.innerText = config.cancelButtonText || 'Cancel'
     submitButton.innerText = config.sendButtonText || 'Send Feedback'
-    footerArea.innerHTML =
-        config.footerHTML || "<strong class='bolded'>Have a complicated issue?</strong> Contact support directly!"
+    if (config.footerHTML) {
+        footerArea.innerHTML = config.footerHTML
+    } else {
+        footerArea.style.display = 'none'
+    }
     shadow.appendChild(formElement)
 
     if (config.selector) {
