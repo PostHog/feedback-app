@@ -19,7 +19,11 @@ const style = `
         cursor: pointer;
     }
     .button:hover {
-        background: #b88505;
+        filter: brightness(1.2);
+    }
+    .button.disabled {
+        opacity: 0.5;
+        filter: grayscale(100%);
     }
     .thanks {
         background: white;
@@ -136,19 +140,6 @@ const style = `
     }
 `
 
-const form = `
-    <textarea class='feedback-textarea' name='feedback' rows=6 placeholder="Help us improve"></textarea>
-    <div class='bottom-section'>
-        <div class='buttons'>
-            <a class='form-cancel' type='button'>Close</a>
-            <button class='form-submit' type='submit'>Submit</button>
-        </div>
-        <div class='specific-issue'>
-            <strong class='bolded'>Have a specific issue?</strong> Contact <a class="support-text" href="mailto:hey@posthog.com">Posthog Support</a> or <a class="support-text" href="https://posthog.com/docs">checkout our docs</a>
-        </div>
-    </div>
-`
-
 export function inject({ config, posthog }) {
     if (config.domains) {
         const domains = config.domains.split(',').map((domain) => domain.trim())
@@ -161,11 +152,6 @@ export function inject({ config, posthog }) {
     function openFeedbackBox() {
         Object.assign(buttonElement.style, { display: 'none' })
         Object.assign(formElement.style, { display: 'flex' })
-
-        const submit: HTMLElement = formElement.querySelector('.form-submit')
-        if (submit) {
-            submit.innerText = config.sendButtonText
-        }
 
         const closeButton = shadow.querySelector('.form-cancel')
         closeButton.addEventListener('click', (e) => {
@@ -182,12 +168,25 @@ export function inject({ config, posthog }) {
     })
     Object.assign(buttonElement.style, {
         color: config.buttonColor || 'black',
-        background: config.buttonBackground || '#ccae05',
+        background: config.buttonBackground || '#1d8db9',
     })
 
     if (config.useButton === 'Yes') {
         shadow.appendChild(buttonElement)
     }
+
+    const form = `
+        <textarea class='feedback-textarea' name='feedback' rows=6></textarea>
+        <div class='bottom-section'>
+            <div class='buttons'>
+                <a class='form-cancel' type='button'>Close</a>
+                <button class='form-submit' type='submit'>Submit</button>
+            </div>
+            <div class='specific-issue'>
+                <strong class='bolded'>Have a specific issue?</strong> Contact <a class="support-text" href="mailto:hey@posthog.com">Posthog Support</a> or <a class="support-text" href="https://posthog.com/docs">checkout our docs</a>
+            </div>
+        </div>
+    `
 
     const formElement = Object.assign(document.createElement('form'), {
         className: 'form',
@@ -205,6 +204,13 @@ export function inject({ config, posthog }) {
             formElement.reset()
         },
     })
+    formElement
+        .getElementsByClassName('feedback-textarea')[0]
+        .setAttribute('placeholder', config.placeholderText || 'Help us improve')
+    ;(formElement.getElementsByClassName('form-cancel')[0] as HTMLElement).innerText =
+        config.cancelButtonText || 'Cancel'
+    ;(formElement.getElementsByClassName('form-submit')[0] as HTMLElement).innerText =
+        config.sendButtonText || 'Send Feedback'
     shadow.appendChild(formElement)
 
     if (config.selector) {

@@ -9,10 +9,7 @@
             "name": "Show feedback button on the page",
             "hint": "Alternatively, any click on an element with the selector [data-attr='posthog-feedback-button'] will open the feedback widget",
             "type": "choice",
-            "choices": [
-                "Yes",
-                "No"
-            ],
+            "choices": ["Yes", "No"],
             "default": "Yes",
             "required": false,
             "site": true
@@ -21,10 +18,11 @@
             "key": "buttonText",
             "name": "Button text",
             "type": "string",
-            "default": "🤔",
+            "default": "✉️",
             "required": true,
             "site": true
-        },{
+        },
+        {
             "key": "buttonTitle",
             "name": "Button title",
             "hint": "The text that appears when you hover over the button",
@@ -60,6 +58,20 @@
             "type": "string",
             "default": "Thank you! Closing in 3 seconds...",
             "required": true,
+            "site": true
+        },
+        {
+            "key": "placeholderText",
+            "name": "Placeholder text",
+            "type": "string",
+            "default": "Help us improve",
+            "site": true
+        },
+        {
+            "key": "cancelButtonText",
+            "name": "Cancel button text",
+            "type": "string",
+            "default": "Cancel",
             "site": true
         },
         {
