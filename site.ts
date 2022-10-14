@@ -179,6 +179,10 @@ export function inject({ config, posthog }) {
         innerText: config.buttonText || '?',
         onclick: openFeedbackBox,
     })
+    Object.assign(buttonElement.style, {
+        color: config.buttonColor || 'black',
+        background: config.buttonBackground || '#ccae05',
+    })
 
     if (config.useButton === 'Yes') {
         shadow.appendChild(buttonElement)
@@ -200,8 +204,14 @@ export function inject({ config, posthog }) {
     })
     shadow.appendChild(formElement)
 
-    const buttons = document.querySelectorAll("[data-attr='posthog-feedback-button']")
-    Array.from(buttons).forEach((x) => x.addEventListener('click', openFeedbackBox))
+    if (config.selector) {
+        const clickListener = (e) => {
+            if (e.target.matches(config.selector)) {
+                openFeedbackBox()
+            }
+        }
+        window.addEventListener('click', clickListener)
+    }
 
     const thanksElement = Object.assign(document.createElement('div'), {
         className: 'thanks',

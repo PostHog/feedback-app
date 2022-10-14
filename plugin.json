@@ -21,8 +21,22 @@
             "key": "buttonText",
             "name": "Button text",
             "type": "string",
-            "default": "🥹",
+            "default": "🤔",
             "required": true,
+            "site": true
+        },
+        {
+            "key": "buttonBackground",
+            "name": "Button background",
+            "type": "string",
+            "default": "",
+            "site": true
+        },
+        {
+            "key": "buttonColor",
+            "name": "Button text color",
+            "type": "string",
+            "default": "",
             "site": true
         },
         {
@@ -47,6 +61,14 @@
             "hint": "Comma separated list of domains to activate on. Leave blank to enable all. For example: \"localhost,app.posthog.com\"",
             "type": "string",
             "default": "",
+            "site": true
+        },
+        {
+            "key": "selector",
+            "name": "Selector",
+            "hint": "CSS selector to activate on. For example: \"#my-feedback-button\"",
+            "type": "string",
+            "default": "[data-attr='posthog-feedback-button']",
             "site": true
         }
     ]
