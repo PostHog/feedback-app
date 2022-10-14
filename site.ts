@@ -193,7 +193,9 @@ export function inject({ config, posthog }) {
         innerHTML: form,
         onsubmit: function (e) {
             e.preventDefault()
-            posthog.capture('Feedback Sent', { feedback: this.feedback.value })
+            posthog.capture(config.eventName || 'Feedback Sent', {
+                [config.feedbackProperty || '$feedback']: this.feedback.value,
+            })
             Object.assign(formElement.style, { display: 'none' })
             Object.assign(thanksElement.style, { display: 'flex' })
             window.setTimeout(() => {

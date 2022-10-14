@@ -70,6 +70,22 @@
             "type": "string",
             "default": "[data-attr='posthog-feedback-button']",
             "site": true
+        },
+        {
+            "key": "eventName",
+            "name": "Feedback event's event name",
+            "type": "string",
+            "default": "Feedback Sent",
+            "required": true,
+            "site": true
+        },
+        {
+            "key": "feedbackProperty",
+            "name": "Feedback event's feedback property",
+            "type": "string",
+            "default": "$feedback",
+            "required": true,
+            "site": true
         }
     ]
 }
