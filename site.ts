@@ -235,6 +235,8 @@ export function inject({ config, posthog }) {
         window.addEventListener('click', clickListener)
     }
 
+    console.log('Posthog - latest feedback widget')
+
     const thanksElement = Object.assign(document.createElement('div'), {
         className: 'thanks',
         innerHTML: '<div>' + config.thanksText + '</div>' || 'Thank you!',
