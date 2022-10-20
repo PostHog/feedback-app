@@ -1,7 +1,7 @@
 const style = `
     .form, .button, .thanks {
         position: fixed;
-        bottom: 20px;
+        bottom: 40px;
         right: 20px;
         color: black;
         font-weight: normal;
