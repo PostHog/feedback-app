@@ -1,7 +1,7 @@
 const style = `
     .form, .button, .thanks {
         position: fixed;
-        bottom: 40px;
+        bottom: 20px;
         right: 20px;
         color: black;
         font-weight: normal;
@@ -251,7 +251,6 @@ function createShadow(style: string): ShadowRoot {
         })
         shadow.appendChild(styleElement)
     }
-    console.log('loaded feedback widget')
     document.body.appendChild(div)
     return shadow
 }
