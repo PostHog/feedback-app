@@ -7,6 +7,7 @@ const style = `
         font-weight: normal;
         font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Roboto", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         text-align: left;
+        z-index: 999999;
     }
     .button {
         width: 64px;
@@ -17,7 +18,6 @@ const style = `
         font-size: 32px;
         border: none;
         cursor: pointer;
-        z-index: 999999;
     }
     .button:hover {
         filter: brightness(1.2);
