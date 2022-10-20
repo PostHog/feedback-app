@@ -251,6 +251,7 @@ function createShadow(style: string): ShadowRoot {
         })
         shadow.appendChild(styleElement)
     }
+    console.log('loaded feedback widget')
     document.body.appendChild(div)
     return shadow
 }
