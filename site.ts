@@ -22,9 +22,10 @@ const style = `
     .button:hover {
         filter: brightness(1.2);
     }
-    .button.disabled {
-        opacity: 0.5;
+    .form-submit[disabled] {
+        opacity: 0.6;
         filter: grayscale(100%);
+        cursor: not-allowed;
     }
     .thanks {
         background: white;
@@ -183,7 +184,7 @@ export function inject({ config, posthog }) {
         <div class='bottom-section'>
             <div class='buttons'>
                 <a class='form-cancel' type='button'>Close</a>
-                <button class='form-submit' type='submit'>Submit</button>
+                <button class='form-submit' type='submit' disabled>Submit</button>
             </div>
             <div class='specific-issue'></div>
         </div>
@@ -205,15 +206,23 @@ export function inject({ config, posthog }) {
             formElement.reset()
         },
     })
-    const textarea = formElement.getElementsByClassName('feedback-textarea')[0] as HTMLElement
+    const textarea = formElement.getElementsByClassName('feedback-textarea')[0] as HTMLTextAreaElement
     const cancelButton = formElement.getElementsByClassName('form-cancel')[0] as HTMLElement
-    const submitButton = formElement.getElementsByClassName('form-submit')[0] as HTMLElement
+    const submitButton = formElement.getElementsByClassName('form-submit')[0] as HTMLButtonElement
     const footerArea = formElement.getElementsByClassName('specific-issue')[0] as HTMLElement
 
     Object.assign(submitButton.style, {
         color: config.buttonColor || 'white',
         background: config.buttonBackground || '#1d8db9',
         borderColor: config.buttonBackground || '#1d8db9',
+    })
+
+    textarea.addEventListener('input', (e) => {
+        if (textarea.value.length > 0) {
+            submitButton.disabled = false
+        } else {
+            submitButton.disabled = true
+        }
     })
 
     textarea.setAttribute('placeholder', config.placeholderText || 'Help us improve')
