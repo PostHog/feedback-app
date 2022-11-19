@@ -37,7 +37,7 @@ const style = `
         border: 1px solid #f0f0f0;
         border-radius: 8px;
         padding-top: 5px;
-        width: 380px;
+        max-width: 380px;
         box-shadow: -6px 0 16px -8px rgb(0 0 0 / 8%), -9px 0 28px 0 rgb(0 0 0 / 5%), -12px 0 48px 16px rgb(0 0 0 / 3%);
     }
     .form textarea {
@@ -118,7 +118,7 @@ const style = `
         border: 1px solid #f0f0f0;
         border-radius: 8px;
         box-shadow: -6px 0 16px -8px rgb(0 0 0 / 8%), -9px 0 28px 0 rgb(0 0 0 / 5%), -12px 0 48px 16px rgb(0 0 0 / 3%);
-        width: 340px;
+        max-width: 340px;
         margin-block-end: 1em;
     }
     .bolded { font-weight: 600; }
