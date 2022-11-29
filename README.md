@@ -1,18 +1,17 @@
-# Feedback App
+# User Interview App
 
-Gather feedback from your users with this app.
+Invite your users to an interview through an in-app pop-up with this app.
 
 ## Installation
 
 1. Make sure you have enabled `opt_in_site_apps: true` in your posthog-js config.
 2. Install the app from the PostHog App Repository
-3. Customise the text, and enable the plugin
-4. Each feedback from your users is now captured as a custom `Feedback Sent` event
-5. You can now use this event to trigger PostHog actions, or create a funnel to see how many users are giving feedback.
+3. Customise the text and add your booking link e.g. Calendly/Cal.com and enable the plugin
+4. TODO: INSERT GUIDANCE ABOUT FEATURE FLAGS
 
 ## Demo
 
-![2022-10-14 11 44 41](https://user-images.githubusercontent.com/53387/195816802-ab1d4987-35f3-496d-9e97-4b85c2f66cfc.gif)
+TODO: INSERT DEMO
 
 ## Local development
 
