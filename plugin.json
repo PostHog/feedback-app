@@ -86,6 +86,6 @@
             "type": "string",
             "default": "User Interview Booked",
             "site": true
-        },
+        }
     ]
 }
