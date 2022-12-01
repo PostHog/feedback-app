@@ -20,15 +20,6 @@
             "site": true
         },
         {
-            "key": "invitationHTML",
-            "name": "Invitation HTML",
-            "hint": "HTML to show in the invitation. For example: \"Book the interview here <a href='https://calendly.com'>here!</a>\"",
-            "type": "string",
-            "default": "Help us improve",
-            "required": true,
-            "site": true
-        },
-        {
             "key": "bookButtonText",
             "name": "Book Button Text",
             "type": "string",
@@ -85,6 +76,14 @@
             "name": "Booked user interview event name",
             "type": "string",
             "default": "User Interview Booked",
+            "site": true
+        },
+        {
+            "key": "featureFlagName",
+            "name": "Feature flag name",
+            "type": "string",
+            "default": "user-interview",
+            "required": true,
             "site": true
         }
     ]
