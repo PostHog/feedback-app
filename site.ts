@@ -120,6 +120,16 @@ export function inject({ config, posthog }) {
 
     const sessionStorageName = `${config.featureFlagName}-popupshown`
 
+    function detectBookedInterview() {
+        const urlParams = new URLSearchParams(window.location.search)
+        const bookedUserInterview = urlParams.get('bookedUserInterview')
+        if (bookedUserInterview) {
+            posthog.capture('bookedUserInterview', { featureFlagName: bookedUserInterview })
+        }
+    }
+
+    detectBookedInterview()
+
     function createPopUp() {
         posthog.capture(config.shownUserInterviewPopupEvent)
         const popupHTML = /*html*/ `
