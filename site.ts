@@ -118,6 +118,8 @@ export function inject({ config, posthog }) {
     }
     const shadow = createShadow(style)
 
+    const sessionStorageName = `${config.featureFlagName}-popupshown`
+
     function createPopUp() {
         posthog.capture(config.shownUserInterviewPopupEvent)
         const popupHTML = /*html*/ `
@@ -143,7 +145,7 @@ export function inject({ config, posthog }) {
         shadow.appendChild(popup)
 
         // save popup shown in storage
-        localStorage.setItem(`${config.featureFlagName}-popupshown`, 'true')
+        localStorage.setItem(sessionStorageName, 'true')
     }
 
     // if popup-close-button then remove popup
@@ -163,7 +165,7 @@ export function inject({ config, posthog }) {
     })
 
     posthog.onFeatureFlags((flags) => {
-        if (flags[config.featureFlagName]) {
+        if (flags[config.featureFlagName] && !localStorage.getItem(sessionStorageName)) {
             createPopUp()
         }
     })
