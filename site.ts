@@ -193,3 +193,8 @@ function createShadow(style: string): ShadowRoot {
     document.body.appendChild(div)
     return shadow
 }
+
+// Next steps:
+// Get it working on a test site
+// Find a way to turn off the booking link after a certain number of people have booked in: https://posthog.com/docs/api/feature-flags#patch-api-projects-project_id-feature_flags-id
+// Add in support for multiple feature flags and links
