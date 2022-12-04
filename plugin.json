@@ -23,7 +23,7 @@
             "key": "bookButtonText",
             "name": "Book Button Text",
             "type": "string",
-            "default": "Find a time here",
+            "default": "Book now",
             "required": true,
             "site": true
         },

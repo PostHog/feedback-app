@@ -76,7 +76,6 @@ const style = /* css */ `
 /* position popup-button in right of popup-actions using flex */
 .popup-book-button {
     height: 32px;
-    justify-content: flex-end;
     color: #fff;
     border-color: #1d4aff;
     background: #1d4aff;
@@ -143,8 +142,8 @@ export function inject({ config, posthog }) {
                 </div>
                 <div class="popup-actions">
                     <button class="popup-close-button">${config.closeButtonText}</button>
-                    <a class="popup-book-button" href="${config.bookButtonURL}" target="_blank"
-                        >${config.bookButtonText}</a
+                    <button class="popup-book-button" onclick="window.open('${config.bookButtonURL}')"
+                        >${config.bookButtonText}</button
                     >
                 </div>
             </div>
@@ -175,7 +174,7 @@ export function inject({ config, posthog }) {
     })
 
     posthog.onFeatureFlags((flags) => {
-        if (flags[config.featureFlagName] && !localStorage.getItem(sessionStorageName)) {
+        if (flags.includes(config.featureFlagName) && !localStorage.getItem(sessionStorageName)) {
             createPopUp()
         }
     })
