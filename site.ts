@@ -209,7 +209,7 @@ export function inject({ config, posthog }) {
             e.preventDefault()
             const sessionRecordingUrl = getSessionRecordingUrl()
             posthog.capture(config.eventName || 'Feedback Sent', {
-                [config.feedbackProperty || '$feedback']: sessionRecordingUrl,
+                [config.feedbackProperty || '$feedback']: this.feedback.value,
                 sessionRecordingUrl: sessionRecordingUrl,
             })
             Object.assign(formElement.style, { display: 'none' })
