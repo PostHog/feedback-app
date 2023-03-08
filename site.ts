@@ -199,7 +199,7 @@ export function inject({ config, posthog }) {
             0
         )
         const api_host = posthog?.config?.api_host || 'https://app.posthog.com'
-        return sessionId ? `${api_host}/recordings/${sessionId}?=${recordingStartTime}` : undefined
+        return sessionId ? `${api_host}/recordings/${sessionId}?t=${recordingStartTime}` : undefined
     }
 
     const formElement = Object.assign(document.createElement('form'), {
