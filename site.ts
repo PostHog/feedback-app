@@ -190,13 +190,27 @@ export function inject({ config, posthog }) {
         </div>
     `
 
+    const getSessionRecordingUrl = () => {
+        const sessionId = posthog?.sessionRecording?.sessionId
+        const LOOK_BACK = 30
+        const recordingStartTime = Math.max(
+            Math.floor((new Date().getTime() - (posthog?.sessionManager?._sessionStartTimestamp || 0)) / 1000) -
+                LOOK_BACK,
+            0
+        )
+        const api_host = posthog?.config?.api_host || 'https://app.posthog.com'
+        return sessionId ? `${api_host}/recordings/${sessionId}?=${recordingStartTime}` : undefined
+    }
+
     const formElement = Object.assign(document.createElement('form'), {
         className: 'form',
         innerHTML: form,
         onsubmit: function (e) {
             e.preventDefault()
+            const sessionRecordingUrl = getSessionRecordingUrl()
             posthog.capture(config.eventName || 'Feedback Sent', {
-                [config.feedbackProperty || '$feedback']: this.feedback.value,
+                [config.feedbackProperty || '$feedback']: sessionRecordingUrl,
+                sessionRecordingUrl: sessionRecordingUrl,
             })
             Object.assign(formElement.style, { display: 'none' })
             Object.assign(thanksElement.style, { display: 'flex' })
