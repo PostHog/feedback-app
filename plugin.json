@@ -121,7 +121,7 @@
             "key": "zIndex",
             "name": "z-index of the form and the button",
             "type": "number",
-            "default": 5,
+            "default": 99999,
             "required": true,
             "site": true
         }
