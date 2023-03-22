@@ -267,12 +267,12 @@ export function inject({ config, posthog }) {
     shadow.appendChild(thanksElement)
 }
 
-function createShadow(style: string): ShadowRoot {
+function createShadow(styleSheet: string): ShadowRoot {
     const div = document.createElement('div')
     const shadow = div.attachShadow({ mode: 'open' })
-    if (style) {
+    if (styleSheet) {
         const styleElement = Object.assign(document.createElement('style'), {
-            innerText: style,
+            innerText: styleSheet,
         })
         shadow.appendChild(styleElement)
     }
