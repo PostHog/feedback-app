@@ -119,9 +119,9 @@
         },
         {
             "key": "zIndex",
-            "name": "z-index of the form and the button",
+            "name": "z-index of the form and the button (default to 999999)",
             "type": "string",
-            "default": 99999,
+            "default": 999999,
             "required": true,
             "site": true
         }
