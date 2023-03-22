@@ -7,7 +7,7 @@ const style = (config) => `
         font-weight: normal;
         font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Roboto", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         text-align: left;
-        z-index: ${config.zIndex || 99999};
+        z-index: ${parseInt(config.zIndex) || 99999};
     }
     .button {
         width: 64px;

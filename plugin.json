@@ -120,7 +120,7 @@
         {
             "key": "zIndex",
             "name": "z-index of the form and the button",
-            "type": "number",
+            "type": "string",
             "default": 99999,
             "required": true,
             "site": true
