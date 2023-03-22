@@ -25,7 +25,10 @@
             "name": "Show feedback button on the page",
             "hint": "Alternatively, any click on an element with the selector [data-attr='posthog-feedback-button'] will open the feedback widget",
             "type": "choice",
-            "choices": ["Yes", "No"],
+            "choices": [
+                "Yes",
+                "No"
+            ],
             "default": "Yes",
             "required": false,
             "site": true
@@ -111,6 +114,14 @@
             "name": "Feedback event's feedback property",
             "type": "string",
             "default": "$feedback",
+            "required": true,
+            "site": true
+        },
+        {
+            "key": "zIndex",
+            "name": "z-index of the form and the button",
+            "type": "number",
+            "default": 5,
             "required": true,
             "site": true
         }

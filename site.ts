@@ -1,4 +1,4 @@
-const style = `
+const style = (config) => `
     .form, .button, .thanks {
         position: fixed;
         bottom: 20px;
@@ -7,7 +7,7 @@ const style = `
         font-weight: normal;
         font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Roboto", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         text-align: left;
-        z-index: 999999;
+        z-index: ${config.zIndex || 99999};
     }
     .button {
         width: 64px;
@@ -151,7 +151,7 @@ export function inject({ config, posthog }) {
             return
         }
     }
-    const shadow = createShadow(style)
+    const shadow = createShadow(style(config))
 
     function openFeedbackBox() {
         Object.assign(buttonElement.style, { display: 'none' })
