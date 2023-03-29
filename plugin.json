@@ -1,5 +1,5 @@
 {
-    "name": "Feedback Widget",
+    "name": "HogDesk Bug Reporter",
     "config": [
         {
             "markdown": "## MANUAL STEP NOTICE: This app needs to injects code into your website through posthog-js. You need to **opt-in** on your site to enable this behaviour.\n\n```\nposthog.init(\"api_key\", {\n  \"api_host\": \"https://app.posthog.com\",\n  \"opt_in_site_apps\": true,\n})\n```"
@@ -15,15 +15,15 @@
         {
             "key": "selector",
             "name": "Selector",
-            "hint": "CSS selector to activate on. For example: \"#my-feedback-button\" or \"[data-attr='posthog-feedback-button']\"",
+            "hint": "CSS selector to activate on. For example: \"#my-bug-button\" or \"[data-attr='posthog-bug-button']\"",
             "type": "string",
             "default": "",
             "site": true
         },
         {
             "key": "useButton",
-            "name": "Show feedback button on the page",
-            "hint": "Alternatively, any click on an element with the selector [data-attr='posthog-feedback-button'] will open the feedback widget",
+            "name": "Show bug button on the page",
+            "hint": "Alternatively, any click on an element with the selector [data-attr='posthog-bug-button'] will open the bug widget",
             "type": "choice",
             "choices": [
                 "Yes",
@@ -74,7 +74,7 @@
             "key": "sendButtonText",
             "name": "Send button text",
             "type": "string",
-            "default": "Send Feedback",
+            "default": "Send bug",
             "required": true,
             "site": true
         },
@@ -96,24 +96,24 @@
         {
             "key": "footerHTML",
             "name": "Footer HTML",
-            "hint": "HTML to show in the footer of the feedback widget. For example: \"More questions? <a href='https://posthog.com/questions'>Ask us anything</a>\"",
+            "hint": "HTML to show in the footer of the bug widget. For example: \"More questions? <a href='https://posthog.com/questions'>Ask us anything</a>\"",
             "type": "string",
             "default": "<strong class='bolded'>Have a specific issue?</strong> Contact support directly!",
             "site": true
         },
         {
             "key": "eventName",
-            "name": "Feedback event's event name",
+            "name": "bug event's event name",
             "type": "string",
-            "default": "Feedback Sent",
+            "default": "bug Sent",
             "required": true,
             "site": true
         },
         {
-            "key": "feedbackProperty",
-            "name": "Feedback event's feedback property",
+            "key": "bugProperty",
+            "name": "bug event's bug property",
             "type": "string",
-            "default": "$feedback",
+            "default": "$bug",
             "required": true,
             "site": true
         },

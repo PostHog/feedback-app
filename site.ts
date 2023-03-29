@@ -10,8 +10,8 @@ const style = (config) => `
         z-index: ${parseInt(config.zIndex) || 99999};
     }
     .button {
-        width: 64px;
-        height: 64px;
+        width: 32px;
+        height: 32px;
         border-radius: 100%;
         text-align: center;
         line-height: 60px;
@@ -153,7 +153,7 @@ export function inject({ config, posthog }) {
     }
     const shadow = createShadow(style(config))
 
-    function openFeedbackBox() {
+    function openbugBox() {
         Object.assign(buttonElement.style, { display: 'none' })
         Object.assign(formElement.style, { display: 'flex' })
 
@@ -167,7 +167,7 @@ export function inject({ config, posthog }) {
     const buttonElement = Object.assign(document.createElement('button'), {
         className: 'button',
         innerText: config.buttonText || '?',
-        onclick: openFeedbackBox,
+        onclick: openbugBox,
         title: config.buttonTitle || '',
     })
     Object.assign(buttonElement.style, {
@@ -180,7 +180,7 @@ export function inject({ config, posthog }) {
     }
 
     const form = `
-        <textarea class='feedback-textarea' name='feedback' rows=6></textarea>
+        <textarea class='bug-textarea' name='bug' rows=6></textarea>
         <div class='bottom-section'>
             <div class='buttons'>
                 <a class='form-cancel' type='button'>Close</a>
@@ -208,8 +208,8 @@ export function inject({ config, posthog }) {
         onsubmit: function (e) {
             e.preventDefault()
             const sessionRecordingUrl = getSessionRecordingUrl()
-            posthog.capture(config.eventName || 'Feedback Sent', {
-                [config.feedbackProperty || '$feedback']: this.feedback.value,
+            posthog.capture(config.eventName || 'bug Sent', {
+                [config.bugProperty || '$bug']: this.bug.value,
                 sessionRecordingUrl: sessionRecordingUrl,
             })
             Object.assign(formElement.style, { display: 'none' })
@@ -220,7 +220,7 @@ export function inject({ config, posthog }) {
             formElement.reset()
         },
     })
-    const textarea = formElement.getElementsByClassName('feedback-textarea')[0] as HTMLTextAreaElement
+    const textarea = formElement.getElementsByClassName('bug-textarea')[0] as HTMLTextAreaElement
     const cancelButton = formElement.getElementsByClassName('form-cancel')[0] as HTMLElement
     const submitButton = formElement.getElementsByClassName('form-submit')[0] as HTMLButtonElement
     const footerArea = formElement.getElementsByClassName('specific-issue')[0] as HTMLElement
@@ -241,7 +241,7 @@ export function inject({ config, posthog }) {
 
     textarea.setAttribute('placeholder', config.placeholderText || 'Help us improve')
     cancelButton.innerText = config.cancelButtonText || 'Cancel'
-    submitButton.innerText = config.sendButtonText || 'Send Feedback'
+    submitButton.innerText = config.sendButtonText || 'Send bug'
     if (config.footerHTML) {
         footerArea.innerHTML = config.footerHTML
     } else {
@@ -252,17 +252,17 @@ export function inject({ config, posthog }) {
     if (config.selector) {
         const clickListener = (e) => {
             if (e.target.matches(config.selector)) {
-                openFeedbackBox()
+                openbugBox()
             }
         }
         window.addEventListener('click', clickListener)
     }
 
-    console.log('Posthog - latest feedback widget')
+    console.log('Posthog - latest bug widget')
 
     const thanksElement = Object.assign(document.createElement('div'), {
         className: 'thanks',
-        innerHTML: '<div>' + config.thanksText + '</div>' || 'Thank you!',
+        innerHTML: '<img src="https://media.tenor.com/7hJpFtl63HQAAAAC/sanic-the-hedgehob.gif"/><div>' + config.thanksText + '</div>' || 'Thank you!',
     })
     shadow.appendChild(thanksElement)
 }
