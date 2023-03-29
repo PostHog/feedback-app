@@ -10,8 +10,8 @@ const style = (config) => `
         z-index: ${parseInt(config.zIndex) || 99999};
     }
     .button {
-        width: 64px;
-        height: 64px;
+        width: 32px;
+        height: 32px;
         border-radius: 100%;
         text-align: center;
         line-height: 60px;
@@ -262,7 +262,7 @@ export function inject({ config, posthog }) {
 
     const thanksElement = Object.assign(document.createElement('div'), {
         className: 'thanks',
-        innerHTML: '<div>' + config.thanksText + '</div>' || 'Thank you!',
+        innerHTML: '<img src="https://media.tenor.com/7hJpFtl63HQAAAAC/sanic-the-hedgehob.gif"/><div>' + config.thanksText + '</div>' || 'Thank you!',
     })
     shadow.appendChild(thanksElement)
 }
