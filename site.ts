@@ -156,7 +156,7 @@ export function inject({ config, posthog }) {
     function openFeedbackBox() {
         try {
             // create event that can be listened to in order to hide other elements in the same position
-            window.dispatchEvent(new Event('PHFeedbackBoxOpen'))
+            window.dispatchEvent(new Event('PHFeedbackBoxOpened'))
             if (window.HubSpotConversations?.widget?) {
                 // hide HubSpot widget
                 window.HubSpotConversations?.widget?.remove();
@@ -172,6 +172,7 @@ export function inject({ config, posthog }) {
         closeButton.addEventListener('click', (e) => {
             e.preventDefault()
             Object.assign(formElement.style, { display: 'none' })
+            window.dispatchEvent(new Event('PHFeedbackBoxClosed'))
         })
     }
 
@@ -227,6 +228,7 @@ export function inject({ config, posthog }) {
             Object.assign(thanksElement.style, { display: 'flex' })
             window.setTimeout(() => {
                 Object.assign(thanksElement.style, { display: 'none' })
+                window.dispatchEvent(new Event('PHFeedbackBoxClosed'))
             }, 3000)
             formElement.reset()
         },
