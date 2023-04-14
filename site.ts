@@ -154,6 +154,17 @@ export function inject({ config, posthog }) {
     const shadow = createShadow(style(config))
 
     function openFeedbackBox() {
+        try {
+            // create event that can be listened to in order to hide other elements in the same position
+            window.dispatchEvent(new Event('PHFeedbackBoxOpen'))
+            if (window.HubSpotConversations?.widget?) {
+                // hide HubSpot widget
+                window.HubSpotConversations?.widget?.remove();
+            }
+        }
+        catch (e) {
+            console.error("PostHog feedback widget error", e)
+        }
         Object.assign(buttonElement.style, { display: 'none' })
         Object.assign(formElement.style, { display: 'flex' })
 
