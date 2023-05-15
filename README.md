@@ -21,7 +21,7 @@ If there are other widgets in the bottom right hand corner:
     -   Add an event listener to the window that hides the other widgets e.g. `PHFeedbackBoxOpened` and show it again with the `PHFeedbackBoxClosed` event. For example:
 
         ```
-        window.addEventListener('PHFeedbackBoxOpen', function (e) {
+        window.addEventListener('PHFeedbackBoxOpened', function (e) {
         window.OtherWidget.hide();
         });
 
