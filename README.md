@@ -1,4 +1,4 @@
-> ⛔️ **Depreciated:** The feedback app has been depreciated in favor of PostHog's built-in [surveys feature](https://posthog.com/docs/surveys/manual. See our tutorial on [getting feedback and booking user interviews with surveys](https://medium.com/maintainer-io/how-to-deprecate-a-repository-on-github-8f0ceb9155e) for more.
+> ⛔️ **Depreciated:** The feedback app has been depreciated in favor of PostHog's built-in [surveys feature](https://posthog.com/docs/surveys/manual. See our tutorial on [getting feedback and booking user interviews with surveys](https://posthog.com/tutorials/feedback-interviews-site-apps) for more.
 
 
 # Feedback App
